@@ -1,0 +1,19 @@
+{
+  "name": "@macrostrat/corelle-demo-app",
+  "version": "0.1.0",
+  "description": "A simple app demonstrating Javascript usage of the Corelle plate-rotations API",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel index.html"
+  },
+  "author": "Daven Quinn",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
