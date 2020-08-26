@@ -1,5 +1,4 @@
 {
-  "name": "@macrostrat/corelle-demo-app",
   "version": "0.1.0",
   "description": "A simple app demonstrating Javascript usage of the Corelle plate-rotations API",
   "main": "index.html",
@@ -15,7 +14,7 @@
   },
   "dependencies": {
     "@blueprintjs/core": "^3.31.0",
-    "@macrostrat/corelle": "^1.0.0",
+    "@macrostrat/corelle": "^1.0.1",
     "@macrostrat/hyper": "^1.2.10",
     "@macrostrat/map-components": "^0.2.0",
     "d3-array": "^2.5.1",

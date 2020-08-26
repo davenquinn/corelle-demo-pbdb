@@ -1,31 +1,14 @@
-import hyper from "@macrostrat/hyper";
-import { Component, useContext } from "react";
-import { useAPIResult } from "@macrostrat/ui-components";
 import { ResizeSensor } from "@blueprintjs/core";
 import { useState } from "react";
-import {
-  PlateFeature,
-  PlateFeatureLayer,
-  RotationsContext,
-} from "@macrostrat/corelle";
-import {
-  geoOrthographic,
-  geoStereographic,
-  geoGnomonic,
-  geoNaturalEarth1,
-} from "d3-geo";
-
-import {
-  Globe,
-  MapContext,
-  MapCanvasContext,
-  FeatureLayer,
-} from "@macrostrat/map-components";
+import { geoNaturalEarth1 } from "d3-geo";
+import { PlateFeatureLayer } from "@macrostrat/corelle";
+import { hyperStyled } from "@macrostrat/hyper";
+import { Globe } from "@macrostrat/map-components";
 
 import "@macrostrat/map-components/dist/esm/index.css";
 import styles from "./main.styl";
 
-const h = hyper.styled(styles);
+const h = hyperStyled(styles);
 
 function Map(props) {
   const [size, setSize] = useState({
@@ -39,7 +22,7 @@ function Map(props) {
   }
 
   const { width, height } = size;
-  const projection = geoGnomonic().precision(0.5);
+  const projection = geoNaturalEarth1().precision(0.5);
 
   return h(
     ResizeSensor,
@@ -55,7 +38,7 @@ function Map(props) {
           projection,
           width,
           height,
-          scale: Math.max(width, height) / 2 - 20,
+          scale: Math.min(width / 5.5, height / 3) - 10,
         },
         [
           //h(PlatePolygons),

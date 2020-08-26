@@ -1,20 +1,15 @@
 import h from "@macrostrat/hyper";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Map } from "./map";
 import { RotationsProvider } from "@macrostrat/corelle";
-import {
-  APIProvider,
-  APIContext,
-  useAPIResult,
-} from "@macrostrat/ui-components";
 
 function App(props) {
-  const model = "Seton2012";
-  const [time, setTime] = useState(0);
+  const model = "Wright2013";
+  const time = 300;
 
   return h("div", [
-    h(RotationsProvider, { model, time, debounce: 1000 }, [h(Map)]),
+    h(RotationsProvider, { model, time, debounce: 1000 }, h(Map)),
   ]);
 }
 
