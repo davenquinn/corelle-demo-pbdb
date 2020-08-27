@@ -1,28 +1,35 @@
 import { geoNaturalEarth1 } from "d3-geo";
+import { useRef } from "react";
 import { PlateFeatureLayer } from "@macrostrat/corelle";
 import { hyperStyled } from "@macrostrat/hyper";
 import { Globe } from "@macrostrat/map-components";
-import { useAPIResult } from "@macrostrat/ui-components";
 import "@macrostrat/map-components/dist/esm/index.css";
 import styles from "./main.styl";
 
 const h = hyperStyled(styles);
 
-function Map(props) {
+const Map = (props) => {
+  /** Map that implements callback to reset internal map state */
   const { width, height } = props;
   const projection = geoNaturalEarth1().precision(0.5);
+  const mapRef = useRef();
 
-  return h(
-    "div.world-map",
-    null,
+  const resetMap = () => {
+    // We have to totally recreate the projection for it to be immutable
+    mapRef.current?.resetProjection(geoNaturalEarth1().precision(0.5));
+  };
+
+  return h("div.world-map", null, [
     h(
       Globe,
       {
+        ref: mapRef,
         keepNorthUp: true,
         projection,
         width,
         height,
         allowZoom: false,
+        keepNorthUp: false,
         //allowDrag: false,
         scale: Math.min(width / 5.5, height / 3) - 10,
       },
@@ -36,8 +43,9 @@ function Map(props) {
           },
         }),
       ]
-    )
-  );
-}
+    ),
+    h("a.reset-map", { onClick: resetMap }, "Reset projection"),
+  ]);
+};
 
 export { Map };
