@@ -42,10 +42,19 @@ g.ne_110m_land
     stroke-width: 1px
 
 .credits
+  position fixed
+  top 10px
+  left 10px
+  width 200px
   margin-bottom 0
   font-style italic
-  text-align right
   color #888
+  text-align left
+  h1
+    font-size 1.2em
+  p
+    margin 0.2em 0 0.5em
+    font-size 12px
   a
     color inherit
     text-decoration: underline
@@ -72,11 +81,13 @@ the timescale component itself.
     border 1px solid var(--cursor-color)
   margin-bottom 10px
   flex-direction: column-reverse !important
-  .interval-box
-    display inline
-    align-content: center
+
 .interval
   flex-direction: column-reverse !important;
+
+.interval-label
+  color #222
+  font-weight 500
 
 g.vx-group.vx-axis
   transform translate(20px,20px)
