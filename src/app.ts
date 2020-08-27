@@ -1,29 +1,13 @@
 import h from "@macrostrat/hyper";
-
 import { useState, useEffect } from "react";
-import { Map } from "./map";
 import { ResizeSensor } from "@blueprintjs/core";
 import { RotationsProvider } from "@macrostrat/corelle";
 import { Timescale } from "@macrostrat/timescale";
 import "@macrostrat/timescale/dist/timescale.css";
+import { Map } from "./map";
+import { Credits } from "./credits";
 
-function Credits() {
-  return h("div.credits", [
-    h("h1", "Corelle demo"),
-    h("p", "Client-side rotation of PBDB collections."),
-    h("p", [h("a.author", { href: "https://davenquinn.com" }, "Daven Quinn")]),
-    h("p", [h("span.version", "v1.0.0"), ", ", h("span.date", "August 2020")]),
-    h("p", [
-      h(
-        "a",
-        { href: "https://github.com/UW-Macrostrat/corelle-pbdb-demo" },
-        "Code on GitHub"
-      ),
-    ]),
-  ]);
-}
-
-function useTimeRange(range, initialValue) {
+function useTimeRange(range: [number, number], initialValue: number) {
   /** A time range that can be stepped through with arrow keys */
   const [time, setTime] = useState(initialValue);
 
@@ -44,11 +28,11 @@ function useTimeRange(range, initialValue) {
   return [time, setTime];
 }
 
-function App(props) {
+function App() {
+  /** The core app component */
   const model = "Wright2013";
 
   const [time, setTime] = useTimeRange([542, 0], 300);
-
   const [size, setSize] = useState({
     width: 1100,
     height: 800,

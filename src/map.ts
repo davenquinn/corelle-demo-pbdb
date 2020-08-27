@@ -2,7 +2,7 @@ import { geoNaturalEarth1 } from "d3-geo";
 import { PlateFeatureLayer } from "@macrostrat/corelle";
 import { hyperStyled } from "@macrostrat/hyper";
 import { Globe } from "@macrostrat/map-components";
-
+import { useAPIResult } from "@macrostrat/ui-components";
 import "@macrostrat/map-components/dist/esm/index.css";
 import styles from "./main.styl";
 
