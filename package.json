@@ -12,6 +12,9 @@
     "stylus": "^0.54.8",
     "typescript": "^3.9.7"
   },
+  "alias": {
+    "react": "./node_modules/react"
+  },
   "dependencies": {
     "@blueprintjs/core": "^3.31.0",
     "@macrostrat/corelle": "^1.0.1",
