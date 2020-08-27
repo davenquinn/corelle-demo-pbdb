@@ -21,6 +21,20 @@ function App(props) {
     return setSize({ width, height });
   }
 
+  useEffect(() => {
+    function checkKey(e) {
+      e = e || window.event;
+      if (e.keyCode == "37") {
+        // left arrow
+        setTime(Math.min(time + 2, 542));
+      } else if (e.keyCode == "39") {
+        // right arrow
+        setTime(Math.max(time - 2, 0));
+      }
+    }
+    document.onkeydown = checkKey;
+  }, [time]);
+
   const { width, height } = size;
 
   return h(ResizeSensor, { onResize }, [
