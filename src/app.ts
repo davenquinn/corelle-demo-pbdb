@@ -6,10 +6,27 @@ import { Timescale } from "@macrostrat/timescale";
 import "@macrostrat/timescale/dist/timescale.css";
 import { Map } from "./map";
 import { Credits } from "./credits";
+import { getQueryString, setQueryString } from "@macrostrat/ui-components";
+
+function useTimeState(initialValue) {
+  /** Time state hook that also manages query URL */
+  let { time: _initialValue } = getQueryString() ?? {};
+  const val = parseInt(_initialValue);
+  const _init = isNaN(val) ? initialValue : val;
+
+  const [time, _setTime] = useState(_init);
+  const setTime = (t) => {
+    _setTime(t);
+    setQueryString({ time: t });
+  };
+
+  return [time, setTime];
+}
 
 function useTimeRange(range: [number, number], initialValue: number) {
   /** A time range that can be stepped through with arrow keys */
-  const [time, setTime] = useState(initialValue);
+
+  const [time, setTime] = useTimeState(initialValue);
 
   useEffect(() => {
     function checkKey(e) {
