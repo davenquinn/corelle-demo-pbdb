@@ -11,32 +11,43 @@ import { geoContains } from "d3-geo";
 import { scalePow } from "d3-scale";
 import h from "@macrostrat/hyper";
 
-function usePBDBFeatures(...args: Parameters<typeof useAPIResult>) {
+function intersectFeatures(polygons, points) {
+  let output = [];
+  for (const pt of points) {
+    for (const plate of polygons) {
+      if (geoContains(plate, [pt.lng, pt.lat])) {
+        const { old_lim, plate_id, young_lim } = plate.properties;
+        output.push({
+          ...pt,
+          old_lim,
+          plate_id,
+          young_lim,
+        });
+        break;
+      }
+    }
+  }
+  return output;
+}
+
+function usePBDBFeatures(time: number, timeDelta: number = 2) {
   /** Get features and assign to plates */
-  const res = useAPIResult<{ records: any[] }>(...args);
+  const res = useAPIResult<{ records: any[] }>(
+    "https://paleobiodb.org/data1.2/colls/summary.json",
+    {
+      show: "time",
+      min_ma: time - timeDelta,
+      max_ma: time + timeDelta,
+      level: 3,
+    }
+  );
 
   const polygons = usePlatePolygons();
 
   const platePoints = useMemo(() => {
     /** Memoized computation of polygon-point intersections */
     if (res == null || polygons == null) return [];
-
-    let output = [];
-    for (const rec of res.records) {
-      for (const plate of polygons) {
-        if (geoContains(plate, [rec.lng, rec.lat])) {
-          const { old_lim, plate_id, young_lim } = plate.properties;
-          output.push({
-            ...rec,
-            old_lim,
-            plate_id,
-            young_lim,
-          });
-          break;
-        }
-      }
-    }
-    return output;
+    return intersectFeatures(polygons, res.records);
   }, [res, polygons]);
 
   return platePoints;
@@ -70,15 +81,7 @@ function PBDBPoint({ feature }) {
 
 export function PBDBCollectionLayer() {
   const { time } = useRotations();
-  const features = usePBDBFeatures(
-    "https://paleobiodb.org/data1.2/colls/summary.json",
-    {
-      show: "time",
-      min_ma: time - 2,
-      max_ma: time + 2,
-      level: 3,
-    }
-  );
+  const features = usePBDBFeatures(time);
 
   return h(
     "g.pbdb-collections",
