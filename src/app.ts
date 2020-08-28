@@ -68,7 +68,7 @@ function App() {
             labelOffset: 10,
           },
           onClick(event, age) {
-            setTime(age);
+            setTime(Math.round(age));
           },
         }),
       ]),

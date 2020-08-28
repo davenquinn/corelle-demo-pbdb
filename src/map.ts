@@ -2,7 +2,7 @@ import { geoNaturalEarth1 } from "d3-geo";
 import { useRef } from "react";
 import { PlateFeatureLayer } from "@macrostrat/corelle";
 import { hyperStyled } from "@macrostrat/hyper";
-//import { PBDBCollectionLayer } from "./point-overlay";
+import { PBDBCollectionLayer } from "./point-overlay";
 import { Globe } from "@macrostrat/map-components";
 import "@macrostrat/map-components/dist/esm/index.css";
 import styles from "./main.styl";
@@ -43,7 +43,7 @@ const Map = (props) => {
             stroke: "#9dc99f",
           },
         }),
-        //h(PBDBCollectionLayer),
+        h(PBDBCollectionLayer),
       ]
     ),
     h("a.reset-map", { onClick: resetMap }, "Reset projection"),
