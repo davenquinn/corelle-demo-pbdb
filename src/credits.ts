@@ -9,7 +9,7 @@ function Credits() {
     h("p", [
       h(
         "a",
-        { href: "https://github.com/UW-Macrostrat/corelle-pbdb-demo" },
+        { href: "https://github.com/davenquinn/corelle-demo-pbdb" },
         "Code on GitHub"
       ),
     ]),

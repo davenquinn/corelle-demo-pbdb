@@ -1,9 +1,11 @@
 {
   "version": "1.0.0",
   "description": "A simple app demonstrating Javascript usage of the Corelle plate-rotations API",
-  "main": "index.html",
+  "main": "dist/index.html",
   "scripts": {
-    "dev": "parcel index.html"
+    "dev": "parcel index.html",
+    "build": "parcel build index.html",
+    "deploy": "scripts/deploy"
   },
   "author": "Daven Quinn",
   "license": "MIT",
