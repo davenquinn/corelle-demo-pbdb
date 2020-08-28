@@ -74,8 +74,6 @@ function PBDBPoint({ feature }) {
   return h("path.pbdb-collection", {
     opacity: opacityScale(nco + noc),
     d: pt,
-    fill: "purple",
-    stroke: "violet",
   });
 }
 

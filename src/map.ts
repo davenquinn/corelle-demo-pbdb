@@ -29,9 +29,7 @@ const Map = (props) => {
         projection,
         width,
         height,
-        allowZoom: false,
         keepNorthUp: false,
-        //allowDrag: false,
         scale: Math.min(width / 5.5, height / 3) - 10,
       },
       [

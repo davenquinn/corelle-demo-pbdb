@@ -4,7 +4,7 @@
   "main": "dist/index.html",
   "scripts": {
     "dev": "parcel index.html",
-    "build": "parcel build index.html",
+    "build": "parcel build --public-url ./ index.html",
     "deploy": "scripts/deploy"
   },
   "author": "Daven Quinn",
