@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A simple app demonstrating Javascript usage of the Corelle plate-rotations API",
   "main": "index.html",
   "scripts": {
@@ -8,7 +8,10 @@
   "author": "Daven Quinn",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/preset-typescript": "^7.10.4",
     "coffeescript": "^2.5.1",
+    "parcel": "^2.0.0-beta.1",
     "stylus": "^0.54.8",
     "typescript": "^3.9.7"
   },
@@ -17,9 +20,10 @@
   },
   "dependencies": {
     "@blueprintjs/core": "^3.31.0",
-    "@macrostrat/corelle": "^1.0.1",
+    "@macrostrat/corelle": "^1.0.3",
     "@macrostrat/hyper": "^1.2.10",
-    "@macrostrat/map-components": "^0.2.0",
+    "@macrostrat/map-components": "^0.2.1",
+    "@macrostrat/timescale": "^1.0.1",
     "@macrostrat/ui-components": "^0.3.3",
     "d3-array": "^2.5.1",
     "d3-geo": "^1.12.1",

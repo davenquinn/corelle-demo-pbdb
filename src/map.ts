@@ -2,6 +2,7 @@ import { geoNaturalEarth1 } from "d3-geo";
 import { useRef } from "react";
 import { PlateFeatureLayer } from "@macrostrat/corelle";
 import { hyperStyled } from "@macrostrat/hyper";
+//import { PBDBCollectionLayer } from "./point-overlay";
 import { Globe } from "@macrostrat/map-components";
 import "@macrostrat/map-components/dist/esm/index.css";
 import styles from "./main.styl";
@@ -12,7 +13,7 @@ const Map = (props) => {
   /** Map that implements callback to reset internal map state */
   const { width, height } = props;
   const projection = geoNaturalEarth1().precision(0.5);
-  const mapRef = useRef();
+  const mapRef = useRef<Globe>();
 
   const resetMap = () => {
     // We have to totally recreate the projection for it to be immutable
@@ -34,14 +35,15 @@ const Map = (props) => {
         scale: Math.min(width / 5.5, height / 3) - 10,
       },
       [
-        //h(PlatePolygons),
         h(PlateFeatureLayer, {
           name: "ne_110m_land",
+          useCanvas: false,
           style: {
             fill: "#E9FCEA",
             stroke: "#9dc99f",
           },
         }),
+        //h(PBDBCollectionLayer),
       ]
     ),
     h("a.reset-map", { onClick: resetMap }, "Reset projection"),

@@ -52,6 +52,7 @@ function App() {
         h(RotationsProvider, { model, time, debounce: 1000 }, [
           h(Map, { width: size.width, height: size.height - 100 }),
         ]),
+        // Many of these timescale options need to be simplified
         h(Timescale, {
           ageRange: [542, 0],
           orientation: "horizontal",
